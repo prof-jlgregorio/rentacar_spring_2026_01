@@ -3,7 +3,14 @@ server:
 spring:
   application:
     name: rentacar
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-
+  #autoconfigure:
+    #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rentacar
+    username: postgres
+    password: postdba
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
