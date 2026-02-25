@@ -4,28 +4,35 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
+//Hibernate annotations:
 @Entity
-@Table(name = "brands")
-@Getter
-@Setter
+@Table(name = "vehicles")
+//Lombok annotations:
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @EqualsAndHashCode
-public class Brand {
-
+public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(length = 30, nullable = false)
     private String name;
 
-    @Column(length = 50, nullable = false)
-    private String description;
+    @Column(length = 20, nullable = false)
+    private String color;
+
+    @Column(nullable = false)
+    private int year;
+
+    @JoinColumn(name = "brand_id")
+    @ManyToOne
+    private Brand brand;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
@@ -34,5 +41,6 @@ public class Brand {
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
     private Date updatedAt;
+
 
 }
