@@ -16,7 +16,7 @@ import java.util.Date;
 @Setter
 @Getter
 @EqualsAndHashCode
-public class Vehicle {
+public class VehicleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -32,7 +32,7 @@ public class Vehicle {
 
     @JoinColumn(name = "brand_id")
     @ManyToOne
-    private Brand brand;
+    private BrandModel brand;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
