@@ -3,12 +3,12 @@ package br.com.jlgregorio.rentacar.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
 
-@RestController
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
             Exception ex, WebRequest request
     ){
         CustomExceptionResponse response = new CustomExceptionResponse(
-                new Date(), ex.getMessage(), request.getDescription(true));
+                new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
