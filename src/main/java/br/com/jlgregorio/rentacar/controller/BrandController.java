@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/brands")
 public class BrandController {
@@ -25,5 +27,24 @@ public class BrandController {
         BrandModel found = brandService.findById(id);
         return new ResponseEntity<>(found, HttpStatus.OK);
     }
+
+    @GetMapping
+    public ResponseEntity<List<BrandModel>> findAll(){
+        var brands = brandService.findAll();
+        return new ResponseEntity<>(brands, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<BrandModel> update(@RequestBody BrandModel brandModel){
+        BrandModel updated = brandService.update(brandModel);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") long id){
+        brandService.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
 
 }

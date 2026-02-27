@@ -1,5 +1,7 @@
 server:
   port: 8000
+  servlet:
+    context-path: /rentacar/api
 spring:
   application:
     name: rentacar
