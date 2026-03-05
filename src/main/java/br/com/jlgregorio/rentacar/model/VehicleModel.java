@@ -42,5 +42,4 @@ public class VehicleModel {
     @UpdateTimestamp
     private Date updatedAt;
 
-
 }
