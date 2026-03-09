@@ -1,6 +1,6 @@
 package br.com.jlgregorio.rentacar.controller;
 
-import br.com.jlgregorio.rentacar.model.BrandModel;
+import br.com.jlgregorio.rentacar.dto.BrandDto;
 import br.com.jlgregorio.rentacar.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,26 +17,26 @@ public class BrandController {
     private BrandService brandService;
 
     @PostMapping
-    public ResponseEntity<BrandModel> create(@RequestBody BrandModel brandModel){
-        BrandModel created = brandService.create(brandModel);
+    public ResponseEntity<BrandDto> create(@RequestBody BrandDto brandModel){
+        BrandDto created = brandService.create(brandModel);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BrandModel> findById(@PathVariable("id") long id){
-        BrandModel found = brandService.findById(id);
+    public ResponseEntity<BrandDto> findById(@PathVariable("id") long id){
+        BrandDto found = brandService.findById(id);
         return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<BrandModel>> findAll(){
+    public ResponseEntity<List<BrandDto>> findAll(){
         var brands = brandService.findAll();
         return new ResponseEntity<>(brands, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<BrandModel> update(@RequestBody BrandModel brandModel){
-        BrandModel updated = brandService.update(brandModel);
+    public ResponseEntity<BrandDto> update(@RequestBody BrandDto brandDto){
+        BrandDto updated = brandService.update(brandDto);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
