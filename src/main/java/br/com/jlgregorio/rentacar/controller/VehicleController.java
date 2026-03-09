@@ -1,5 +1,6 @@
 package br.com.jlgregorio.rentacar.controller;
 
+import br.com.jlgregorio.rentacar.dto.VehicleDto;
 import br.com.jlgregorio.rentacar.model.VehicleModel;
 import br.com.jlgregorio.rentacar.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +18,26 @@ public class VehicleController {
     private VehicleService vehicleService;
 
     @PostMapping
-    public ResponseEntity<VehicleModel> create(@RequestBody VehicleModel vehicleModel){
-        var created = vehicleService.create(vehicleModel);
+    public ResponseEntity<VehicleDto> create(@RequestBody VehicleDto vehicleDto){
+        var created = vehicleService.create(vehicleDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VehicleModel> findById(@PathVariable long id){
+    public ResponseEntity<VehicleDto> findById(@PathVariable long id){
         var found = vehicleService.findById(id);
         return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<VehicleModel>> findAll(){
+    public ResponseEntity<List<VehicleDto>> findAll(){
        var vehicles = vehicleService.findAll();
        return new ResponseEntity<>(vehicles, HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<VehicleModel> update(@RequestBody VehicleModel vehicleModel){
-        var updated = vehicleService.update(vehicleModel);
+    public ResponseEntity<VehicleDto> update(@RequestBody VehicleDto vehicleDto){
+        var updated = vehicleService.update(vehicleDto);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
