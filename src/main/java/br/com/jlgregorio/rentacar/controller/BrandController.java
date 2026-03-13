@@ -17,8 +17,8 @@ public class BrandController {
     private BrandService brandService;
 
     @PostMapping
-    public ResponseEntity<BrandDto> create(@RequestBody BrandDto brandModel){
-        BrandDto created = brandService.create(brandModel);
+    public ResponseEntity<BrandDto> create(@RequestBody BrandDto brandDto){
+        BrandDto created = brandService.create(brandDto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
