@@ -11,11 +11,17 @@ import java.util.stream.Collectors;
 public class BrandMapper {
 
     public  static BrandModel toModel(BrandDto brandDto){
+        if(brandDto == null){
+            return null;
+        }
         return new BrandModel(brandDto.id(), brandDto.name(), brandDto.description(),
                 brandDto.createdAt(), brandDto.updatedAt());
     }
 
     public static BrandDto toDto(BrandModel brandModel){
+        if(brandModel == null){
+            return null;
+        }
         return new BrandDto(brandModel.getId(),brandModel.getDescription(), brandModel.getDescription(),
                 brandModel.getCreatedAt(), brandModel.getUpdatedAt());
     }

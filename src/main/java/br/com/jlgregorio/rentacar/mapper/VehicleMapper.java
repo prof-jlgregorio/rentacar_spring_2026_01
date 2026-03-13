@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 public record VehicleMapper() {
 
     public static VehicleModel toModel(VehicleDto vehicleDto){
+        if(vehicleDto == null){
+            return null;
+        }
         return new VehicleModel(
                 vehicleDto.id(), vehicleDto.name(), vehicleDto.color(), vehicleDto.year(),
                 BrandMapper.toModel(vehicleDto.brand()),
@@ -19,6 +22,9 @@ public record VehicleMapper() {
     }
 
     public static VehicleDto toDto(VehicleModel vehicleModel){
+        if(vehicleModel == null){
+            return null;
+        }
         return new VehicleDto(vehicleModel.getId(), vehicleModel.getName(), vehicleModel.getColor(),
                 vehicleModel.getYear(), BrandMapper.toDto(vehicleModel.getBrand()),
                 vehicleModel.getCreatedAt(), vehicleModel.getUpdatedAt());
