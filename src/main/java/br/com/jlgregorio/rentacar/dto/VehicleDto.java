@@ -1,18 +1,15 @@
 package br.com.jlgregorio.rentacar.dto;
 
-import lombok.*;
+import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
-public class VehicleDto {
-
-    private long id;
-    private String name;
-    private String color;
-    private int year;
-    private BrandDto brand;
+public record VehicleDto(
+        long id,
+        String name,
+        String color,
+        int year,
+        BrandDto brand,
+        Date createdAt,
+        Date updatedAt
+) {
 
 }
