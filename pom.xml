@@ -71,6 +71,12 @@
 			<version>2.8.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>11.14.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -79,6 +85,39 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+<!-- plugin do Flyway -->
+
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>11.14.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.flywaydb</groupId>
+						<artifactId>flyway-database-postgresql</artifactId>
+						<version>11.14.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>42.7.10</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/rentacar</url>
+					<user>postgres</user>
+					<password>postdba</password>
+					<schemas>
+						<schema>public</schema>
+					</schemas>
+					<cleanDisabled>false</cleanDisabled>
+				</configuration>
+			</plugin>
+
+
+
 		</plugins>
 	</build>
 
