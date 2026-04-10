@@ -1,45 +1,44 @@
-package br.com.jlgregorio.rentacar.service;
+package br.com.jlgregorio.rentacar.service.v2;
 
-import br.com.jlgregorio.rentacar.dto.BrandDto;
+import br.com.jlgregorio.rentacar.dto.v2.BrandDtoV2;
 import br.com.jlgregorio.rentacar.exception.ResourceNotFoundException;
 import br.com.jlgregorio.rentacar.mapper.CustomModelMapper;
 import br.com.jlgregorio.rentacar.model.BrandModel;
 import br.com.jlgregorio.rentacar.repository.BrandRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BrandService {
+public class BrandServiceV2 {
 
     @Autowired
     private BrandRepository brandRepository;
 
-    public BrandDto findById(long id){
+    public BrandDtoV2 findById(long id){
         var found = brandRepository.findById(id).orElseThrow(() -> new
                 ResourceNotFoundException("Marca não encontrada!"));
-        return CustomModelMapper.parseObject(found, BrandDto.class);
+        return CustomModelMapper.parseObject(found, BrandDtoV2.class);
     }
 
-    public List<BrandDto> findAll(){
+    public List<BrandDtoV2> findAll(){
         var brands = brandRepository.findAll();
-        return CustomModelMapper.parseObjectList(brands, BrandDto.class);
+        return CustomModelMapper.parseObjectList(brands, BrandDtoV2.class);
     }
 
-    public BrandDto create(BrandDto brandDto){
+    public BrandDtoV2 create(BrandDtoV2 brandDto){
         BrandModel brandModel = CustomModelMapper.parseObject(brandDto, BrandModel.class);
-        return CustomModelMapper.parseObject(brandRepository.save(brandModel), BrandDto.class);
+        return CustomModelMapper.parseObject(brandRepository.save(brandModel), BrandDtoV2.class);
     }
 
-    public BrandDto update(BrandDto brandDto){
+    public BrandDtoV2 update(BrandDtoV2 brandDto){
         var found = brandRepository.findById(brandDto.getId()).orElseThrow(
                 ()-> new ResourceNotFoundException("Marca não encontrada!")
         );
         found.setName(brandDto.getName());
         found.setDescription(brandDto.getDescription());
-        return CustomModelMapper.parseObject(brandRepository.save(found), BrandDto.class);
+        return CustomModelMapper.parseObject(brandRepository.save(found), BrandDtoV2.class);
     }
 
     public void delete(long id){

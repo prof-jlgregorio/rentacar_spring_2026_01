@@ -1,4 +1,4 @@
-package br.com.jlgregorio.rentacar.dto;
+package br.com.jlgregorio.rentacar.dto.v1;
 
 import lombok.*;
 
@@ -7,12 +7,13 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class VehicleDto {
+public class VehicleDtoV1 {
 
     private long id;
     private String name;
     private String color;
     private int year;
-    private BrandDto brand;
+    private BrandDtoV1 brand;
+
 
 }

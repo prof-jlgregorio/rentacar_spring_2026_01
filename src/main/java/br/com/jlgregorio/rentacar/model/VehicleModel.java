@@ -42,4 +42,9 @@ public class VehicleModel {
     @UpdateTimestamp
     private Date updatedAt;
 
+    //v2----- keep the attribute as null to avoid breaking changes
+    @Column
+    private String observations;
+
+
 }
